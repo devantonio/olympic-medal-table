@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Olympic Medal Table</title>
+    <link rel="icon" href="data:,">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+</head>
+<body>
+    <style>
+        .sort-data-cont {
+            cursor: pointer;
+        }
+
+        .active {
+            color: red;
+        }
+    </style>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1 class="pt-3 pb-3 m-0">Olympic Medal Table</h1>
+            <div class="form-group mt-2 mb-2">
+                <input type="text" class="search form-control" placeholder="Search for a team">
+                <div class="message"></div>
+            </div>
+            <div class="container table-responsive">
+                <table class="table table-striped ">
+                    <thead>
+                        <tr class="bg-dark text-white">
+                            <th class="small text-center">Team(IOC Code) 
+                                <div class="sort-data-cont cursor-pointer " >
+                                    <span class="sort small">▲</span>
+                                    <span  class="sort small">▼</span>
+                                </div>
+                            </th>
+                            <th class="small text-center">Summer Rank 
+                                <div  class="sort-data-cont cursor-pointer" >
+                                    <span  class="sort small">▲</span>
+                                    <span  class="sort small">▼</span>
+                                </div>
+                            </th>
+                            <th class="small text-center">Summer Gold 
+                                <div  class="sort-data-cont cursor-pointer" >
+                                    <span  class="sort small">▲</span>
+                                    <span  class="sort small">▼</span>
+                                </div>
+                            </th>
+                            <th class="small text-center">Summer Silver 
+                                <div  class="sort-data-cont cursor-pointer" >
+                                    <span  class="sort small">▲</span>
+                                    <span  class="sort small">▼</span>
+                                </div>
+                            </th>
+                            <th class="small text-center">Summer Bronze 
+                                <div  class="sort-data-cont cursor-pointer" >
+                                    <span  class="sort small">▲</span>
+                                    <span  class="sort small">▼</span>
+                                </div>
+                            </th>
+                            <th class="small text-center">Summer Total 
+                                <div  class="sort-data-cont cursor-pointer" >
+                                    <span  class="sort small">▲</span>
+                                    <span  class="sort small">▼</span>
+                                </div>
+                            </th>
+                            <th class="small text-center">Winter Rank 
+                                <div  class="sort-data-cont cursor-pointer" >
+                                    <span  class="sort small">▲</span>
+                                    <span  class="sort small">▼</span>
+                                </div>
+                            </th>
+                            <th class="small text-center">Winter Gold 
+                                <div  class="sort-data-cont cursor-pointer" >
+                                    <span  class="sort small">▲</span>
+                                    <span  class="sort small">▼</span>
+                                </div>
+                            </th>
+                            <th class="small text-center">Winter Silver 
+                                <div  class="sort-data-cont cursor-pointer" >
+                                    <span  class="sort small">▲</span>
+                                    <span  class="sort small">▼</span>
+                                </div>
+                            </th>
+                            <th class="small text-center">Winter Bronze 
+                                <div  class="sort-data-cont cursor-pointer" >
+                                    <span  class="sort small">▲</span>
+                                    <span  class="sort small">▼</span>
+                                </div>
+                            </th>
+                            <th class="small text-center">Winter Total 
+                                <div  class="sort-data-cont cursor-pointer" >
+                                    <span  class="sort small">▲</span>
+                                    <span  class="sort small">▼</span>
+                                </div>
+                            </th>
+                            <th class="small text-center">Overall Rank 
+                                <div  class="sort-data-cont cursor-pointer" >
+                                    <span  class="sort small">▲</span>
+                                    <span  class="sort small">▼</span>
+                                </div>
+                            </th>
+                            <th class="small text-center">Total Gold 
+                                <div  class="sort-data-cont cursor-pointer" >
+                                    <span  class="sort small">▲</span>
+                                    <span  class="sort small">▼</span>
+                                </div>
+                            </th>
+                            <th class="small text-center">Total Silver 
+                                <div  class="sort-data-cont cursor-pointer" >
+                                    <span  class="sort small">▲</span>
+                                    <span  class="sort small">▼</span>
+                                </div>
+                            </th>
+                            <th class="small text-center">Total Bronze 
+                                <div  class="sort-data-cont cursor-pointer" >
+                                    <span  class="sort small">▲</span>
+                                    <span  class="sort small">▼</span>
+                                </div>
+                            </th>
+                            <th class="small text-center">Total Medals 
+                                <div  class="sort-data-cont cursor-pointer" >
+                                    <span  class="sort small">▲</span>
+                                    <span  class="sort small">▼</span>
+                                </div>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+let data=[{"Team":"Afghanistan","summer_rank":14,"s_gold":"0","s_silver":0,"s_bronze":2,"summer_total":"2","winter_rank":0,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":14,"total_gold":"0","total_silver":0,"total_bronze":2,"total_medals":"2"},{"Team":"Algeria ","summer_rank":13,"s_gold":"5","s_silver":4,"s_bronze":8,"summer_total":"17","winter_rank":3,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":16,"total_gold":"5","total_silver":4,"total_bronze":8,"total_medals":"17"},{"Team":"Argentina ","summer_rank":24,"s_gold":"21","s_silver":25,"s_bronze":28,"summer_total":"74","winter_rank":19,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":43,"total_gold":"21","total_silver":25,"total_bronze":28,"total_medals":"74"},{"Team":"Armenia ","summer_rank":6,"s_gold":"2","s_silver":6,"s_bronze":6,"summer_total":"14","winter_rank":7,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":13,"total_gold":"2","total_silver":6,"total_bronze":6,"total_medals":"14"},{"Team":"Australasia ","summer_rank":2,"s_gold":"3","s_silver":4,"s_bronze":5,"summer_total":"12","winter_rank":0,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":2,"total_gold":"3","total_silver":4,"total_bronze":5,"total_medals":"12"},{"Team":"Australia ","summer_rank":26,"s_gold":"147","s_silver":163,"s_bronze":187,"summer_total":"497","winter_rank":19,"w_gold":5,"w_silver":5,"w_bronze":5,"winter_total":15,"overall_rank":45,"total_gold":"152","total_silver":168,"total_bronze":192,"total_medals":"512"},{"Team":"Austria ","summer_rank":27,"s_gold":"18","s_silver":33,"s_bronze":36,"summer_total":"87","winter_rank":23,"w_gold":64,"w_silver":81,"w_bronze":87,"winter_total":232,"overall_rank":50,"total_gold":"82","total_silver":114,"total_bronze":123,"total_medals":"319"},{"Team":"Azerbaijan ","summer_rank":6,"s_gold":"7","s_silver":11,"s_bronze":24,"summer_total":"42","winter_rank":6,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":12,"total_gold":"7","total_silver":11,"total_bronze":24,"total_medals":"42"},{"Team":"Bahamas ","summer_rank":16,"s_gold":"6","s_silver":2,"s_bronze":6,"summer_total":"14","winter_rank":0,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":16,"total_gold":"6","total_silver":2,"total_bronze":6,"total_medals":"14"},{"Team":"Bahrain ","summer_rank":9,"s_gold":"2","s_silver":1,"s_bronze":0,"summer_total":"3","winter_rank":0,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":9,"total_gold":"2","total_silver":1,"total_bronze":0,"total_medals":"3"},{"Team":"Barbados ","summer_rank":12,"s_gold":"0","s_silver":0,"s_bronze":1,"summer_total":"1","winter_rank":0,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":12,"total_gold":"0","total_silver":0,"total_bronze":1,"total_medals":"1"},{"Team":"Belarus ","summer_rank":6,"s_gold":"12","s_silver":27,"s_bronze":39,"summer_total":"78","winter_rank":7,"w_gold":8,"w_silver":5,"w_bronze":5,"winter_total":18,"overall_rank":13,"total_gold":"20","total_silver":32,"total_bronze":44,"total_medals":"96"},{"Team":"Belgium ","summer_rank":26,"s_gold":"40","s_silver":53,"s_bronze":55,"summer_total":"148","winter_rank":21,"w_gold":1,"w_silver":2,"w_bronze":3,"winter_total":6,"overall_rank":47,"total_gold":"41","total_silver":55,"total_bronze":58,"total_medals":"154"},{"Team":"Bermuda ","summer_rank":18,"s_gold":"0","s_silver":0,"s_bronze":1,"summer_total":"1","winter_rank":8,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":26,"total_gold":"0","total_silver":0,"total_bronze":1,"total_medals":"1"},{"Team":"Bohemia ","summer_rank":3,"s_gold":"0","s_silver":1,"s_bronze":3,"summer_total":"4","winter_rank":0,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":3,"total_gold":"0","total_silver":1,"total_bronze":3,"total_medals":"4"},{"Team":"Botswana ","summer_rank":10,"s_gold":"0","s_silver":1,"s_bronze":0,"summer_total":"1","winter_rank":0,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":10,"total_gold":"0","total_silver":1,"total_bronze":0,"total_medals":"1"},{"Team":"Brazil ","summer_rank":22,"s_gold":"30","s_silver":36,"s_bronze":63,"summer_total":"129","winter_rank":8,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":30,"total_gold":"30","total_silver":36,"total_bronze":63,"total_medals":"129"},{"Team":"British West Indies ","summer_rank":1,"s_gold":"0","s_silver":0,"s_bronze":2,"summer_total":"2","winter_rank":0,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":1,"total_gold":"0","total_silver":0,"total_bronze":2,"total_medals":"2"},{"Team":"Bulgaria ","summer_rank":20,"s_gold":"51","s_silver":87,"s_bronze":80,"summer_total":"218","winter_rank":20,"w_gold":1,"w_silver":2,"w_bronze":3,"winter_total":6,"overall_rank":40,"total_gold":"52","total_silver":89,"total_bronze":83,"total_medals":"224"},{"Team":"Burundi ","summer_rank":6,"s_gold":"1","s_silver":1,"s_bronze":0,"summer_total":"2","winter_rank":0,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":6,"total_gold":"1","total_silver":1,"total_bronze":0,"total_medals":"2"},{"Team":"Cameroon ","summer_rank":14,"s_gold":"3","s_silver":1,"s_bronze":2,"summer_total":"6","winter_rank":1,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":15,"total_gold":"3","total_silver":1,"total_bronze":2,"total_medals":"6"},{"Team":"Canada ","summer_rank":26,"s_gold":"64","s_silver":102,"s_bronze":136,"summer_total":"302","winter_rank":23,"w_gold":73,"w_silver":64,"w_bronze":62,"winter_total":199,"overall_rank":49,"total_gold":"137","total_silver":166,"total_bronze":198,"total_medals":"501"},{"Team":"Chile ","summer_rank":23,"s_gold":"2","s_silver":7,"s_bronze":4,"summer_total":"13","winter_rank":17,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":40,"total_gold":"2","total_silver":7,"total_bronze":4,"total_medals":"13"},{"Team":"China ","summer_rank":10,"s_gold":"224","s_silver":167,"s_bronze":155,"summer_total":"546","winter_rank":11,"w_gold":13,"w_silver":28,"w_bronze":21,"winter_total":62,"overall_rank":21,"total_gold":"237","total_silver":195,"total_bronze":176,"total_medals":"608"},{"Team":"Colombia ","summer_rank":19,"s_gold":"5","s_silver":9,"s_bronze":14,"summer_total":"28","winter_rank":2,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":21,"total_gold":"5","total_silver":9,"total_bronze":14,"total_medals":"28"},{"Team":"Costa Rica ","summer_rank":15,"s_gold":"1","s_silver":1,"s_bronze":2,"summer_total":"4","winter_rank":6,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":21,"total_gold":"1","total_silver":1,"total_bronze":2,"total_medals":"4"},{"Team":"Ivory Coast ","summer_rank":13,"s_gold":"1","s_silver":1,"s_bronze":1,"summer_total":"3","winter_rank":0,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":13,"total_gold":"1","total_silver":1,"total_bronze":1,"total_medals":"3"},{"Team":"Croatia ","summer_rank":7,"s_gold":"11","s_silver":10,"s_bronze":12,"summer_total":"33","winter_rank":8,"w_gold":4,"w_silver":6,"w_bronze":1,"winter_total":11,"overall_rank":15,"total_gold":"15","total_silver":16,"total_bronze":13,"total_medals":"44"},{"Team":"Cuba ","summer_rank":20,"s_gold":"78","s_silver":68,"s_bronze":80,"summer_total":"226","winter_rank":0,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":20,"total_gold":"78","total_silver":68,"total_bronze":80,"total_medals":"226"},{"Team":"Cyprus ","summer_rank":10,"s_gold":"0","s_silver":1,"s_bronze":0,"summer_total":"1","winter_rank":11,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":21,"total_gold":"0","total_silver":1,"total_bronze":0,"total_medals":"1"},{"Team":"Czech Republic ","summer_rank":6,"s_gold":"15","s_silver":17,"s_bronze":24,"summer_total":"56","winter_rank":7,"w_gold":9,"w_silver":11,"w_bronze":11,"winter_total":31,"overall_rank":13,"total_gold":"24","total_silver":28,"total_bronze":35,"total_medals":"87"},{"Team":"Czechoslovakia ","summer_rank":16,"s_gold":"49","s_silver":49,"s_bronze":45,"summer_total":"143","winter_rank":16,"w_gold":2,"w_silver":8,"w_bronze":15,"winter_total":25,"overall_rank":32,"total_gold":"51","total_silver":57,"total_bronze":60,"total_medals":"168"},{"Team":"Denmark ","summer_rank":27,"s_gold":"45","s_silver":74,"s_bronze":75,"summer_total":"194","winter_rank":14,"w_gold":0,"w_silver":1,"w_bronze":0,"winter_total":1,"overall_rank":41,"total_gold":"45","total_silver":75,"total_bronze":75,"total_medals":"195"},{"Team":"Djibouti ","summer_rank":8,"s_gold":"0","s_silver":0,"s_bronze":1,"summer_total":"1","winter_rank":0,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":8,"total_gold":"0","total_silver":0,"total_bronze":1,"total_medals":"1"},{"Team":"Dominican Republic ","summer_rank":14,"s_gold":"3","s_silver":2,"s_bronze":2,"summer_total":"7","winter_rank":0,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":14,"total_gold":"3","total_silver":2,"total_bronze":2,"total_medals":"7"},{"Team":"Ecuador ","summer_rank":14,"s_gold":"1","s_silver":1,"s_bronze":0,"summer_total":"2","winter_rank":1,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":15,"total_gold":"1","total_silver":1,"total_bronze":0,"total_medals":"2"},{"Team":"Egypt ","summer_rank":22,"s_gold":"7","s_silver":10,"s_bronze":15,"summer_total":"32","winter_rank":1,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":23,"total_gold":"7","total_silver":10,"total_bronze":15,"total_medals":"32"},{"Team":"Eritrea ","summer_rank":5,"s_gold":"0","s_silver":0,"s_bronze":1,"summer_total":"1","winter_rank":1,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":6,"total_gold":"0","total_silver":0,"total_bronze":1,"total_medals":"1"},{"Team":"Estonia ","summer_rank":12,"s_gold":"9","s_silver":9,"s_bronze":16,"summer_total":"34","winter_rank":10,"w_gold":4,"w_silver":2,"w_bronze":1,"winter_total":7,"overall_rank":22,"total_gold":"13","total_silver":11,"total_bronze":17,"total_medals":"41"},{"Team":"Ethiopia ","summer_rank":13,"s_gold":"22","s_silver":11,"s_bronze":21,"summer_total":"54","winter_rank":2,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":15,"total_gold":"22","total_silver":11,"total_bronze":21,"total_medals":"54"},{"Team":"Fiji ","summer_rank":14,"s_gold":"1","s_silver":0,"s_bronze":0,"summer_total":"1","winter_rank":3,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":17,"total_gold":"1","total_silver":0,"total_bronze":0,"total_medals":"1"},{"Team":"Finland ","summer_rank":25,"s_gold":"101","s_silver":85,"s_bronze":117,"summer_total":"303","winter_rank":23,"w_gold":43,"w_silver":63,"w_bronze":61,"winter_total":167,"overall_rank":48,"total_gold":"144","total_silver":148,"total_bronze":178,"total_medals":"470"},{"Team":"France ","summer_rank":28,"s_gold":"212","s_silver":241,"s_bronze":263,"summer_total":"716","winter_rank":23,"w_gold":36,"w_silver":35,"w_bronze":53,"winter_total":124,"overall_rank":51,"total_gold":"248","total_silver":276,"total_bronze":316,"total_medals":"840"},{"Team":"Gabon ","summer_rank":10,"s_gold":"0","s_silver":1,"s_bronze":0,"summer_total":"1","winter_rank":0,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":10,"total_gold":"0","total_silver":1,"total_bronze":0,"total_medals":"1"},{"Team":"Georgia ","summer_rank":6,"s_gold":"8","s_silver":7,"s_bronze":17,"summer_total":"32","winter_rank":7,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":13,"total_gold":"8","total_silver":7,"total_bronze":17,"total_medals":"32"},{"Team":"Germany ","summer_rank":16,"s_gold":"191","s_silver":194,"s_bronze":230,"summer_total":"615","winter_rank":12,"w_gold":92,"w_silver":88,"w_bronze":60,"winter_total":240,"overall_rank":28,"total_gold":"283","total_silver":282,"total_bronze":290,"total_medals":"855"},{"Team":"United Team of Germany ","summer_rank":3,"s_gold":"28","s_silver":54,"s_bronze":36,"summer_total":"118","winter_rank":3,"w_gold":8,"w_silver":6,"w_bronze":5,"winter_total":19,"overall_rank":6,"total_gold":"36","total_silver":60,"total_bronze":41,"total_medals":"137"},{"Team":"East Germany ","summer_rank":5,"s_gold":"153","s_silver":129,"s_bronze":127,"summer_total":"409","winter_rank":6,"w_gold":39,"w_silver":36,"w_bronze":35,"winter_total":110,"overall_rank":11,"total_gold":"192","total_silver":165,"total_bronze":162,"total_medals":"519"},{"Team":"West Germany ","summer_rank":5,"s_gold":"56","s_silver":67,"s_bronze":81,"summer_total":"204","winter_rank":6,"w_gold":11,"w_silver":15,"w_bronze":13,"winter_total":39,"overall_rank":11,"total_gold":"67","total_silver":82,"total_bronze":94,"total_medals":"243"},{"Team":"Ghana ","summer_rank":14,"s_gold":"0","s_silver":1,"s_bronze":3,"summer_total":"4","winter_rank":2,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":16,"total_gold":"0","total_silver":1,"total_bronze":3,"total_medals":"4"},{"Team":"Great Britain ","summer_rank":28,"s_gold":"263","s_silver":295,"s_bronze":293,"summer_total":"851","winter_rank":23,"w_gold":11,"w_silver":4,"w_bronze":17,"winter_total":32,"overall_rank":51,"total_gold":"274","total_silver":299,"total_bronze":310,"total_medals":"883"},{"Team":"Greece ","summer_rank":28,"s_gold":"33","s_silver":43,"s_bronze":40,"summer_total":"116","winter_rank":19,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":47,"total_gold":"33","total_silver":43,"total_bronze":40,"total_medals":"116"},{"Team":"Grenada ","summer_rank":9,"s_gold":"1","s_silver":1,"s_bronze":0,"summer_total":"2","winter_rank":0,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":9,"total_gold":"1","total_silver":1,"total_bronze":0,"total_medals":"2"},{"Team":"Guatemala ","summer_rank":14,"s_gold":"0","s_silver":1,"s_bronze":0,"summer_total":"1","winter_rank":1,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":15,"total_gold":"0","total_silver":1,"total_bronze":0,"total_medals":"1"},{"Team":"Guyana ","summer_rank":17,"s_gold":"0","s_silver":0,"s_bronze":1,"summer_total":"1","winter_rank":0,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":17,"total_gold":"0","total_silver":0,"total_bronze":1,"total_medals":"1"},{"Team":"Haiti ","summer_rank":15,"s_gold":"0","s_silver":1,"s_bronze":1,"summer_total":"2","winter_rank":0,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":15,"total_gold":"0","total_silver":1,"total_bronze":1,"total_medals":"2"},{"Team":"Hong Kong ","summer_rank":16,"s_gold":"1","s_silver":1,"s_bronze":1,"summer_total":"3","winter_rank":5,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":21,"total_gold":"1","total_silver":1,"total_bronze":1,"total_medals":"3"},{"Team":"Hungary ","summer_rank":26,"s_gold":"175","s_silver":147,"s_bronze":169,"summer_total":"491","winter_rank":23,"w_gold":1,"w_silver":2,"w_bronze":4,"winter_total":7,"overall_rank":49,"total_gold":"176","total_silver":149,"total_bronze":173,"total_medals":"498"},{"Team":"Iceland ","summer_rank":20,"s_gold":"0","s_silver":2,"s_bronze":2,"summer_total":"4","winter_rank":18,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":38,"total_gold":"0","total_silver":2,"total_bronze":2,"total_medals":"4"},{"Team":"India ","summer_rank":24,"s_gold":"9","s_silver":7,"s_bronze":12,"summer_total":"28","winter_rank":10,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":34,"total_gold":"9","total_silver":7,"total_bronze":12,"total_medals":"28"},{"Team":"Indonesia ","summer_rank":15,"s_gold":"7","s_silver":13,"s_bronze":12,"summer_total":"32","winter_rank":0,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":15,"total_gold":"7","total_silver":13,"total_bronze":12,"total_medals":"32"},{"Team":"Iran ","summer_rank":16,"s_gold":"21","s_silver":21,"s_bronze":27,"summer_total":"69","winter_rank":11,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":27,"total_gold":"21","total_silver":21,"total_bronze":27,"total_medals":"69"},{"Team":"Iraq ","summer_rank":14,"s_gold":"0","s_silver":0,"s_bronze":1,"summer_total":"1","winter_rank":0,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":14,"total_gold":"0","total_silver":0,"total_bronze":1,"total_medals":"1"},{"Team":"Ireland ","summer_rank":21,"s_gold":"9","s_silver":10,"s_bronze":12,"summer_total":"31","winter_rank":7,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":28,"total_gold":"9","total_silver":10,"total_bronze":12,"total_medals":"31"},{"Team":"Israel ","summer_rank":16,"s_gold":"1","s_silver":1,"s_bronze":7,"summer_total":"9","winter_rank":7,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":23,"total_gold":"1","total_silver":1,"total_bronze":7,"total_medals":"9"},{"Team":"Italy ","summer_rank":27,"s_gold":"206","s_silver":178,"s_bronze":193,"summer_total":"577","winter_rank":23,"w_gold":40,"w_silver":36,"w_bronze":48,"winter_total":124,"overall_rank":50,"total_gold":"246","total_silver":214,"total_bronze":241,"total_medals":"701"},{"Team":"Jamaica ","summer_rank":17,"s_gold":"22","s_silver":35,"s_bronze":21,"summer_total":"78","winter_rank":8,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":25,"total_gold":"22","total_silver":35,"total_bronze":21,"total_medals":"78"},{"Team":"Japan ","summer_rank":22,"s_gold":"142","s_silver":136,"s_bronze":161,"summer_total":"439","winter_rank":21,"w_gold":14,"w_silver":22,"w_bronze":22,"winter_total":58,"overall_rank":43,"total_gold":"156","total_silver":158,"total_bronze":183,"total_medals":"497"},{"Team":"Jordan ","summer_rank":10,"s_gold":"1","s_silver":0,"s_bronze":0,"summer_total":"1","winter_rank":0,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":10,"total_gold":"1","total_silver":0,"total_bronze":0,"total_medals":"1"},{"Team":"Kazakhstan ","summer_rank":6,"s_gold":"15","s_silver":21,"s_bronze":28,"summer_total":"64","winter_rank":7,"w_gold":1,"w_silver":3,"w_bronze":4,"winter_total":8,"overall_rank":13,"total_gold":"16","total_silver":24,"total_bronze":32,"total_medals":"72"},{"Team":"Kenya ","summer_rank":14,"s_gold":"31","s_silver":38,"s_bronze":34,"summer_total":"103","winter_rank":4,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":18,"total_gold":"31","total_silver":38,"total_bronze":34,"total_medals":"103"},{"Team":"Kosovo ","summer_rank":1,"s_gold":"1","s_silver":0,"s_bronze":0,"summer_total":"1","winter_rank":1,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":2,"total_gold":"1","total_silver":0,"total_bronze":0,"total_medals":"1"},{"Team":"North Korea ","summer_rank":10,"s_gold":"16","s_silver":16,"s_bronze":22,"summer_total":"54","winter_rank":9,"w_gold":0,"w_silver":1,"w_bronze":1,"winter_total":2,"overall_rank":19,"total_gold":"16","total_silver":17,"total_bronze":23,"total_medals":"56"},{"Team":"South Korea ","summer_rank":17,"s_gold":"90","s_silver":87,"s_bronze":90,"summer_total":"267","winter_rank":18,"w_gold":31,"w_silver":25,"w_bronze":14,"winter_total":70,"overall_rank":35,"total_gold":"121","total_silver":112,"total_bronze":104,"total_medals":"337"},{"Team":"Kuwait ","summer_rank":12,"s_gold":"0","s_silver":0,"s_bronze":2,"summer_total":"2","winter_rank":0,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":12,"total_gold":"0","total_silver":0,"total_bronze":2,"total_medals":"2"},{"Team":"Kyrgyzstan ","summer_rank":6,"s_gold":"0","s_silver":1,"s_bronze":3,"summer_total":"4","winter_rank":7,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":13,"total_gold":"0","total_silver":1,"total_bronze":3,"total_medals":"4"},{"Team":"Latvia ","summer_rank":11,"s_gold":"3","s_silver":11,"s_bronze":5,"summer_total":"19","winter_rank":11,"w_gold":1,"w_silver":3,"w_bronze":5,"winter_total":9,"overall_rank":22,"total_gold":"4","total_silver":14,"total_bronze":10,"total_medals":"28"},{"Team":"Lebanon ","summer_rank":17,"s_gold":"0","s_silver":2,"s_bronze":2,"summer_total":"4","winter_rank":17,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":34,"total_gold":"0","total_silver":2,"total_bronze":2,"total_medals":"4"},{"Team":"Liechtenstein ","summer_rank":17,"s_gold":"0","s_silver":0,"s_bronze":0,"summer_total":"0","winter_rank":19,"w_gold":2,"w_silver":2,"w_bronze":6,"winter_total":10,"overall_rank":36,"total_gold":"2","total_silver":2,"total_bronze":6,"total_medals":"10"},{"Team":"Lithuania ","summer_rank":9,"s_gold":"6","s_silver":6,"s_bronze":13,"summer_total":"25","winter_rank":9,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":18,"total_gold":"6","total_silver":6,"total_bronze":13,"total_medals":"25"},{"Team":"Luxembourg ","summer_rank":23,"s_gold":"1","s_silver":1,"s_bronze":0,"summer_total":"2","winter_rank":9,"w_gold":0,"w_silver":2,"w_bronze":0,"winter_total":2,"overall_rank":32,"total_gold":"1","total_silver":3,"total_bronze":0,"total_medals":"4"},{"Team":"Malaysia ","summer_rank":13,"s_gold":"0","s_silver":7,"s_bronze":4,"summer_total":"11","winter_rank":1,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":14,"total_gold":"0","total_silver":7,"total_bronze":4,"total_medals":"11"},{"Team":"Mauritius ","summer_rank":9,"s_gold":"0","s_silver":0,"s_bronze":1,"summer_total":"1","winter_rank":0,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":9,"total_gold":"0","total_silver":0,"total_bronze":1,"total_medals":"1"},{"Team":"Mexico ","summer_rank":23,"s_gold":"13","s_silver":24,"s_bronze":32,"summer_total":"69","winter_rank":9,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":32,"total_gold":"13","total_silver":24,"total_bronze":32,"total_medals":"69"},{"Team":"Moldova ","summer_rank":6,"s_gold":"0","s_silver":2,"s_bronze":3,"summer_total":"5","winter_rank":7,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":13,"total_gold":"0","total_silver":2,"total_bronze":3,"total_medals":"5"},{"Team":"Mongolia ","summer_rank":13,"s_gold":"2","s_silver":10,"s_bronze":14,"summer_total":"26","winter_rank":14,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":27,"total_gold":"2","total_silver":10,"total_bronze":14,"total_medals":"26"},{"Team":"Montenegro ","summer_rank":3,"s_gold":"0","s_silver":1,"s_bronze":0,"summer_total":"1","winter_rank":3,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":6,"total_gold":"0","total_silver":1,"total_bronze":0,"total_medals":"1"},{"Team":"Morocco ","summer_rank":14,"s_gold":"6","s_silver":5,"s_bronze":12,"summer_total":"23","winter_rank":7,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":21,"total_gold":"6","total_silver":5,"total_bronze":12,"total_medals":"23"},{"Team":"Mozambique ","summer_rank":10,"s_gold":"1","s_silver":0,"s_bronze":1,"summer_total":"2","winter_rank":0,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":10,"total_gold":"1","total_silver":0,"total_bronze":1,"total_medals":"2"},{"Team":"Namibia ","summer_rank":7,"s_gold":"0","s_silver":4,"s_bronze":0,"summer_total":"4","winter_rank":0,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":7,"total_gold":"0","total_silver":4,"total_bronze":0,"total_medals":"4"},{"Team":"Netherlands ","summer_rank":26,"s_gold":"85","s_silver":92,"s_bronze":108,"summer_total":"285","winter_rank":21,"w_gold":45,"w_silver":44,"w_bronze":41,"winter_total":130,"overall_rank":47,"total_gold":"130","total_silver":136,"total_bronze":149,"total_medals":"415"},{"Team":"Netherlands Antilles ","summer_rank":13,"s_gold":"0","s_silver":1,"s_bronze":0,"summer_total":"1","winter_rank":2,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":15,"total_gold":"0","total_silver":1,"total_bronze":0,"total_medals":"1"},{"Team":"New Zealand ","summer_rank":23,"s_gold":"46","s_silver":27,"s_bronze":44,"summer_total":"117","winter_rank":16,"w_gold":0,"w_silver":1,"w_bronze":2,"winter_total":3,"overall_rank":39,"total_gold":"46","total_silver":28,"total_bronze":46,"total_medals":"120"},{"Team":"Niger ","summer_rank":12,"s_gold":"0","s_silver":1,"s_bronze":1,"summer_total":"2","winter_rank":0,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":12,"total_gold":"0","total_silver":1,"total_bronze":1,"total_medals":"2"},{"Team":"Nigeria ","summer_rank":16,"s_gold":"3","s_silver":10,"s_bronze":12,"summer_total":"25","winter_rank":1,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":17,"total_gold":"3","total_silver":10,"total_bronze":12,"total_medals":"25"},{"Team":"North Macedonia","summer_rank":6,"s_gold":"0","s_silver":0,"s_bronze":1,"summer_total":"1","winter_rank":6,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":12,"total_gold":"0","total_silver":0,"total_bronze":1,"total_medals":"1"},{"Team":"Norway ","summer_rank":25,"s_gold":"56","s_silver":49,"s_bronze":47,"summer_total":"152","winter_rank":23,"w_gold":132,"w_silver":125,"w_bronze":111,"winter_total":368,"overall_rank":48,"total_gold":"188","total_silver":174,"total_bronze":158,"total_medals":"520"},{"Team":"Pakistan ","summer_rank":17,"s_gold":"3","s_silver":3,"s_bronze":4,"summer_total":"10","winter_rank":3,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":20,"total_gold":"3","total_silver":3,"total_bronze":4,"total_medals":"10"},{"Team":"Panama ","summer_rank":17,"s_gold":"1","s_silver":0,"s_bronze":2,"summer_total":"3","winter_rank":0,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":17,"total_gold":"1","total_silver":0,"total_bronze":2,"total_medals":"3"},{"Team":"Paraguay ","summer_rank":12,"s_gold":"0","s_silver":1,"s_bronze":0,"summer_total":"1","winter_rank":1,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":13,"total_gold":"0","total_silver":1,"total_bronze":0,"total_medals":"1"},{"Team":"Peru ","summer_rank":18,"s_gold":"1","s_silver":3,"s_bronze":0,"summer_total":"4","winter_rank":2,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":20,"total_gold":"1","total_silver":3,"total_bronze":0,"total_medals":"4"},{"Team":"Philippines ","summer_rank":21,"s_gold":"0","s_silver":3,"s_bronze":7,"summer_total":"10","winter_rank":5,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":26,"total_gold":"0","total_silver":3,"total_bronze":7,"total_medals":"10"},{"Team":"Poland ","summer_rank":21,"s_gold":"68","s_silver":84,"s_bronze":132,"summer_total":"284","winter_rank":23,"w_gold":7,"w_silver":7,"w_bronze":8,"winter_total":22,"overall_rank":44,"total_gold":"75","total_silver":91,"total_bronze":140,"total_medals":"306"},{"Team":"Portugal ","summer_rank":24,"s_gold":"4","s_silver":8,"s_bronze":12,"summer_total":"24","winter_rank":8,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":32,"total_gold":"4","total_silver":8,"total_bronze":12,"total_medals":"24"},{"Team":"Puerto Rico ","summer_rank":18,"s_gold":"1","s_silver":2,"s_bronze":6,"summer_total":"9","winter_rank":7,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":25,"total_gold":"1","total_silver":2,"total_bronze":6,"total_medals":"9"},{"Team":"Qatar ","summer_rank":9,"s_gold":"0","s_silver":1,"s_bronze":4,"summer_total":"5","winter_rank":0,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":9,"total_gold":"0","total_silver":1,"total_bronze":4,"total_medals":"5"},{"Team":"Romania ","summer_rank":21,"s_gold":"89","s_silver":94,"s_bronze":121,"summer_total":"304","winter_rank":21,"w_gold":0,"w_silver":0,"w_bronze":1,"winter_total":1,"overall_rank":42,"total_gold":"89","total_silver":94,"total_bronze":122,"total_medals":"305"},{"Team":"Russia ","summer_rank":6,"s_gold":"149","s_silver":125,"s_bronze":152,"summer_total":"426","winter_rank":6,"w_gold":47,"w_silver":39,"w_bronze":35,"winter_total":121,"overall_rank":12,"total_gold":"196","total_silver":164,"total_bronze":187,"total_medals":"547"},{"Team":"Russian Empire ","summer_rank":3,"s_gold":"1","s_silver":4,"s_bronze":3,"summer_total":"8","winter_rank":0,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":3,"total_gold":"1","total_silver":4,"total_bronze":3,"total_medals":"8"},{"Team":"Soviet Union ","summer_rank":9,"s_gold":"395","s_silver":319,"s_bronze":296,"summer_total":"1,010","winter_rank":9,"w_gold":78,"w_silver":57,"w_bronze":59,"winter_total":194,"overall_rank":18,"total_gold":"473","total_silver":376,"total_bronze":355,"total_medals":"1,204"},{"Team":"Unified Team ","summer_rank":1,"s_gold":"45","s_silver":38,"s_bronze":29,"summer_total":"112","winter_rank":1,"w_gold":9,"w_silver":6,"w_bronze":8,"winter_total":23,"overall_rank":2,"total_gold":"54","total_silver":44,"total_bronze":37,"total_medals":"135"},{"Team":"Olympic Athletes from Russia ","summer_rank":0,"s_gold":"0","s_silver":0,"s_bronze":0,"summer_total":"0","winter_rank":1,"w_gold":2,"w_silver":6,"w_bronze":9,"winter_total":17,"overall_rank":1,"total_gold":"2","total_silver":6,"total_bronze":9,"total_medals":"17"},{"Team":"Saudi Arabia ","summer_rank":11,"s_gold":"0","s_silver":1,"s_bronze":2,"summer_total":"3","winter_rank":0,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":11,"total_gold":"0","total_silver":1,"total_bronze":2,"total_medals":"3"},{"Team":"Samoa ","summer_rank":9,"s_gold":"0","s_silver":1,"s_bronze":0,"summer_total":"1","winter_rank":0,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":9,"total_gold":"0","total_silver":1,"total_bronze":0,"total_medals":"1"},{"Team":"Senegal ","summer_rank":14,"s_gold":"0","s_silver":1,"s_bronze":0,"summer_total":"1","winter_rank":5,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":19,"total_gold":"0","total_silver":1,"total_bronze":0,"total_medals":"1"},{"Team":"Serbia ","summer_rank":4,"s_gold":"3","s_silver":6,"s_bronze":6,"summer_total":"15","winter_rank":3,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":7,"total_gold":"3","total_silver":6,"total_bronze":6,"total_medals":"15"},{"Team":"Serbia and Montenegro ","summer_rank":1,"s_gold":"0","s_silver":2,"s_bronze":0,"summer_total":"2","winter_rank":1,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":2,"total_gold":"0","total_silver":2,"total_bronze":0,"total_medals":"2"},{"Team":"Singapore ","summer_rank":16,"s_gold":"1","s_silver":2,"s_bronze":2,"summer_total":"5","winter_rank":1,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":17,"total_gold":"1","total_silver":2,"total_bronze":2,"total_medals":"5"},{"Team":"Slovakia ","summer_rank":6,"s_gold":"9","s_silver":12,"s_bronze":7,"summer_total":"28","winter_rank":7,"w_gold":3,"w_silver":4,"w_bronze":1,"winter_total":8,"overall_rank":13,"total_gold":"12","total_silver":16,"total_bronze":8,"total_medals":"36"},{"Team":"Slovenia ","summer_rank":7,"s_gold":"5","s_silver":8,"s_bronze":10,"summer_total":"23","winter_rank":8,"w_gold":2,"w_silver":5,"w_bronze":10,"winter_total":17,"overall_rank":15,"total_gold":"7","total_silver":13,"total_bronze":20,"total_medals":"40"},{"Team":"South Africa ","summer_rank":19,"s_gold":"26","s_silver":31,"s_bronze":29,"summer_total":"86","winter_rank":7,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":26,"total_gold":"26","total_silver":31,"total_bronze":29,"total_medals":"86"},{"Team":"Spain ","summer_rank":23,"s_gold":"45","s_silver":64,"s_bronze":41,"summer_total":"150","winter_rank":20,"w_gold":1,"w_silver":0,"w_bronze":3,"winter_total":4,"overall_rank":43,"total_gold":"46","total_silver":64,"total_bronze":44,"total_medals":"154"},{"Team":"Sri Lanka ","summer_rank":17,"s_gold":"0","s_silver":2,"s_bronze":0,"summer_total":"2","winter_rank":0,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":17,"total_gold":"0","total_silver":2,"total_bronze":0,"total_medals":"2"},{"Team":"Sudan ","summer_rank":12,"s_gold":"0","s_silver":1,"s_bronze":0,"summer_total":"1","winter_rank":0,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":12,"total_gold":"0","total_silver":1,"total_bronze":0,"total_medals":"1"},{"Team":"Suriname ","summer_rank":12,"s_gold":"1","s_silver":0,"s_bronze":1,"summer_total":"2","winter_rank":0,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":12,"total_gold":"1","total_silver":0,"total_bronze":1,"total_medals":"2"},{"Team":"Sweden ","summer_rank":27,"s_gold":"145","s_silver":170,"s_bronze":179,"summer_total":"494","winter_rank":23,"w_gold":57,"w_silver":46,"w_bronze":55,"winter_total":158,"overall_rank":50,"total_gold":"202","total_silver":216,"total_bronze":234,"total_medals":"652"},{"Team":"Switzerland ","summer_rank":28,"s_gold":"50","s_silver":75,"s_bronze":67,"summer_total":"192","winter_rank":23,"w_gold":56,"w_silver":45,"w_bronze":52,"winter_total":153,"overall_rank":51,"total_gold":"106","total_silver":120,"total_bronze":119,"total_medals":"345"},{"Team":"Syria ","summer_rank":13,"s_gold":"1","s_silver":1,"s_bronze":1,"summer_total":"3","winter_rank":0,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":13,"total_gold":"1","total_silver":1,"total_bronze":1,"total_medals":"3"},{"Team":"Chinese Taipei ","summer_rank":14,"s_gold":"5","s_silver":7,"s_bronze":12,"summer_total":"24","winter_rank":12,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":26,"total_gold":"5","total_silver":7,"total_bronze":12,"total_medals":"24"},{"Team":"Tajikistan ","summer_rank":6,"s_gold":"1","s_silver":1,"s_bronze":2,"summer_total":"4","winter_rank":4,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":10,"total_gold":"1","total_silver":1,"total_bronze":2,"total_medals":"4"},{"Team":"Tanzania ","summer_rank":13,"s_gold":"0","s_silver":2,"s_bronze":0,"summer_total":"2","winter_rank":0,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":13,"total_gold":"0","total_silver":2,"total_bronze":0,"total_medals":"2"},{"Team":"Thailand ","summer_rank":16,"s_gold":"9","s_silver":8,"s_bronze":16,"summer_total":"33","winter_rank":4,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":20,"total_gold":"9","total_silver":8,"total_bronze":16,"total_medals":"33"},{"Team":"Togo ","summer_rank":10,"s_gold":"0","s_silver":0,"s_bronze":1,"summer_total":"1","winter_rank":2,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":12,"total_gold":"0","total_silver":0,"total_bronze":1,"total_medals":"1"},{"Team":"Tonga ","summer_rank":9,"s_gold":"0","s_silver":1,"s_bronze":0,"summer_total":"1","winter_rank":2,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":11,"total_gold":"0","total_silver":1,"total_bronze":0,"total_medals":"1"},{"Team":"Trinidad and Tobago ","summer_rank":17,"s_gold":"3","s_silver":5,"s_bronze":11,"summer_total":"19","winter_rank":3,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":20,"total_gold":"3","total_silver":5,"total_bronze":11,"total_medals":"19"},{"Team":"Tunisia ","summer_rank":14,"s_gold":"4","s_silver":2,"s_bronze":7,"summer_total":"13","winter_rank":0,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":14,"total_gold":"4","total_silver":2,"total_bronze":7,"total_medals":"13"},{"Team":"Turkey ","summer_rank":22,"s_gold":"39","s_silver":24,"s_bronze":28,"summer_total":"91","winter_rank":17,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":39,"total_gold":"39","total_silver":24,"total_bronze":28,"total_medals":"91"},{"Team":"Uganda ","summer_rank":15,"s_gold":"2","s_silver":3,"s_bronze":2,"summer_total":"7","winter_rank":0,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":15,"total_gold":"2","total_silver":3,"total_bronze":2,"total_medals":"7"},{"Team":"Ukraine ","summer_rank":6,"s_gold":"34","s_silver":30,"s_bronze":56,"summer_total":"120","winter_rank":7,"w_gold":3,"w_silver":1,"w_bronze":4,"winter_total":8,"overall_rank":13,"total_gold":"37","total_silver":31,"total_bronze":60,"total_medals":"128"},{"Team":"United Arab Emirates ","summer_rank":9,"s_gold":"1","s_silver":0,"s_bronze":1,"summer_total":"2","winter_rank":0,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":9,"total_gold":"1","total_silver":0,"total_bronze":1,"total_medals":"2"},{"Team":"United States ","summer_rank":27,"s_gold":"1,022","s_silver":795,"s_bronze":706,"summer_total":"2,523","winter_rank":23,"w_gold":105,"w_silver":112,"w_bronze":88,"winter_total":305,"overall_rank":50,"total_gold":"1,127","total_silver":907,"total_bronze":794,"total_medals":"2,828"},{"Team":"Uruguay ","summer_rank":21,"s_gold":"2","s_silver":2,"s_bronze":6,"summer_total":"10","winter_rank":1,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":22,"total_gold":"2","total_silver":2,"total_bronze":6,"total_medals":"10"},{"Team":"Uzbekistan ","summer_rank":6,"s_gold":"7","s_silver":6,"s_bronze":18,"summer_total":"31","winter_rank":7,"w_gold":1,"w_silver":0,"w_bronze":0,"winter_total":1,"overall_rank":13,"total_gold":"8","total_silver":6,"total_bronze":18,"total_medals":"32"},{"Team":"Venezuela ","summer_rank":18,"s_gold":"2","s_silver":4,"s_bronze":9,"summer_total":"15","winter_rank":4,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":22,"total_gold":"2","total_silver":4,"total_bronze":9,"total_medals":"15"},{"Team":"Vietnam ","summer_rank":15,"s_gold":"1","s_silver":3,"s_bronze":1,"summer_total":"5","winter_rank":0,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":15,"total_gold":"1","total_silver":3,"total_bronze":1,"total_medals":"5"},{"Team":"Virgin Islands ","summer_rank":12,"s_gold":"0","s_silver":1,"s_bronze":0,"summer_total":"1","winter_rank":7,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":19,"total_gold":"0","total_silver":1,"total_bronze":0,"total_medals":"1"},{"Team":"Yugoslavia ","summer_rank":18,"s_gold":"28","s_silver":31,"s_bronze":31,"summer_total":"90","winter_rank":16,"w_gold":0,"w_silver":3,"w_bronze":1,"winter_total":4,"overall_rank":34,"total_gold":"28","total_silver":34,"total_bronze":32,"total_medals":"94"},{"Team":"Zambia ","summer_rank":13,"s_gold":"0","s_silver":1,"s_bronze":1,"summer_total":"2","winter_rank":0,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":13,"total_gold":"0","total_silver":1,"total_bronze":1,"total_medals":"2"},{"Team":"Zimbabwe ","summer_rank":13,"s_gold":"3","s_silver":4,"s_bronze":1,"summer_total":"8","winter_rank":1,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":14,"total_gold":"3","total_silver":4,"total_bronze":1,"total_medals":"8"},{"Team":"Independent Olympic Athletes ","summer_rank":3,"s_gold":"1","s_silver":0,"s_bronze":1,"summer_total":"2","winter_rank":0,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":3,"total_gold":"1","total_silver":0,"total_bronze":1,"total_medals":"2"},{"Team":"Independent Olympic Participants ","summer_rank":1,"s_gold":"0","s_silver":1,"s_bronze":2,"summer_total":"3","winter_rank":0,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":1,"total_gold":"0","total_silver":1,"total_bronze":2,"total_medals":"3"},{"Team":"Mixed team ","summer_rank":3,"s_gold":"8","s_silver":5,"s_bronze":4,"summer_total":"17","winter_rank":0,"w_gold":0,"w_silver":0,"w_bronze":0,"winter_total":0,"overall_rank":3,"total_gold":"8","total_silver":5,"total_bronze":4,"total_medals":"17"}];
+
+const _$ = document.querySelector.bind(document);
+const _$$ = document.querySelectorAll.bind(document);
+const tBodyTemp = (data) =>  `
+    <tr>
+        <td class="text-center">
+            <div class="data-userId">
+                ${data.Team}
+            </div>
+        </td>
+        <td class="text-center">
+            <div class="data-id">
+                ${data.summer_rank}
+            </div>
+        </td>
+        <td class="text-center">
+            <div class="data-title">
+                ${data.s_gold}
+            </div>
+        </td>
+        <td class="text-center">
+            <div class="data-body">
+                ${data.s_silver}
+            </div>
+        </td>
+        <td class="text-center">
+            <div class="data-body">
+                ${data.s_bronze}
+            </div>
+        </td>
+        <td class="text-center">
+            <div class="data-body">
+                ${data.summer_total}
+            </div>
+        </td>
+        <td class="text-center">
+            <div class="data-body">
+                ${data.winter_rank}
+            </div>
+        </td>
+        <td class="text-center">
+            <div class="data-body">
+                ${data.w_gold}
+            </div>
+        </td>
+        <td class="text-center">
+            <div class="data-body">
+                ${data.w_silver}
+            </div>
+        </td>
+        <td class="text-center">
+            <div class="data-body">
+                ${data.w_bronze}
+            </div>
+        </td>
+        <td class="text-center">
+            <div class="data-body">
+                ${data.winter_total}
+            </div>
+        </td>
+        <td class="text-center">
+            <div class="data-body">
+                ${data.overall_rank}
+            </div>
+        </td>
+        <td class="text-center">
+            <div class="data-body">
+                ${data.total_gold}
+            </div>
+        </td>
+        <td class="text-center">
+            <div class="data-body">
+                ${data.total_silver}
+            </div>
+        </td>
+        <td class="text-center">
+            <div class="data-body">
+                ${data.total_bronze}
+            </div>
+        </td>
+        <td class="text-center">
+            <div class="data-body">
+                ${data.total_medals}
+            </div>
+        </td>
+    </tr>
+    `;
+
+/*
+* Set data-key attributes with the keys in data object
+*/
+setDataKeys = (data, i) => {
+    if(i < 1) {
+        Object.keys(data).forEach((key, i) => {
+            _$$('.sort-data-cont')[i].setAttribute("data-key", key);
+        });
+    }
+}
+
+/*
+* Get all data to display in the table
+*/
+getAllData = () => {
+    data.map((data, i) => {
+        setDataKeys(data, i);
+
+        _$('tbody').insertAdjacentHTML('beforeend', tBodyTemp(data));
+    });
+}
+
+/*
+* Search table table for Teams given a term  
+*/
+getSearchData = (term) => {
+    _$("tbody").innerHTML = "";
+
+    const pattern = new RegExp(term,"ig");
+    let dataCount = data.length;
+    let falseCount = 0;
+    let trueCount = 0;
+
+    data.map((data, i) => {
+        if(pattern.test(data.Team)) {
+            trueCount++;
+
+            _$('.message').innerHTML = `${trueCount} results found for ${term}`;
+            _$('tbody').insertAdjacentHTML('beforeend', tBodyTemp(data));
+        } else {
+            falseCount++;
+        }
+        
+        if(falseCount == dataCount) {
+            _$('.message').innerHTML = `<p>No Results found for ${term}</p>`;
+        }
+    });
+}
+
+
+/*
+* Sort data integers in a descending order given the val of the data-key to use
+*/
+sortIntDesc = (val) => {
+    // assign data to a sorted version that has converted integers to strings and removed commas for the best sort
+    data = data.sort((a, b) => {return a[val].toString().replace(/,/g, '') - b[val].toString().replace(/,/g, '')});
+
+    // insert table data
+    data.map((data) => {
+        _$('tbody').insertAdjacentHTML('beforeend', tBodyTemp(data));
+    });
+}
+
+/*
+* Sort data integers in an ascending order given the val of the data-key to use
+*/
+sortIntAsc = (val) => {
+    // assign data to a sorted version that has converted integers to strings and removed commas for the best sort
+    data = data.sort((a, b) => {return b[val].toString().replace(/,/g, '') - a[val].toString().replace(/,/g, '')}) ;
+    
+    // insert table data
+    data.map((data) => {
+        _$('tbody').insertAdjacentHTML('beforeend', tBodyTemp(data));
+    });
+}
+
+/*
+* Sort data strings in an ascending order given the val of the data-key to use
+*/
+sortCharAsc = (val) => {
+    data = data.sort(function(a, b) {
+        let x = a[val].toLowerCase();
+        let y = b[val].toLowerCase();
+
+        // place before 
+        if (x > y) {return -1;}
+        // place after
+        if (x < y) {return 1;}
+
+        // equal
+        return 0;
+  });
+
+  // inert table data
+  data.map((data) => {
+        _$('tbody').insertAdjacentHTML('beforeend', tBodyTemp(data));
+    });
+} 
+
+/*
+* Sort data strings in an descending order given the val of the data-key to use
+*/
+sortCharDesc = (val) => {
+    data = data.sort(function(a, b){
+        let x = a[val].toLowerCase();
+        let y = b[val].toLowerCase();
+
+        // place before 
+        if (x < y) {return -1;}
+        // place after
+        if (x > y) {return 1;}
+
+        // equal
+        return 0;
+  });
+
+  // insert data
+  data.map((data) => {
+        _$('tbody').insertAdjacentHTML('beforeend', tBodyTemp(data));
+    });
+} 
+
+
+
+
+/*
+* Handle search event
+*/
+_$(".search").onkeyup = (e) => {
+    getSearchData(e.target.value);
+};
+
+
+/*
+* Handle sort event
+*/
+_$$('.sort-data-cont').forEach(el => {
+    el.onclick = (e) => {
+        let key = e.currentTarget.getAttribute('data-key');
+
+        _$("tbody").innerHTML = "";
+        
+        // remove active class on each sort
+        _$$(".sort").forEach(el => {el.classList.remove('active');});
+            // if sort is already set to ascend, then set sort to descend
+            // give arrows an active class to correspond with which sort is set and remove the class that doesn't correspond'
+            if(e.currentTarget.classList.contains('asc') ) { 
+                [...e.currentTarget.children][0].classList.add('active');
+                [...e.currentTarget.children][1].classList.remove('active');
+                e.currentTarget.classList.add('desc');
+                e.currentTarget.classList.remove('asc');
+
+               if (key == "Team") {
+                   sortCharDesc(key);
+               } else {
+                sortIntDesc(key);
+               }
+                // if sort is already set to descend, then set sort to ascend
+                // give arrows an active class to correspond with which sort is set nd remove the class that doesn't correspond
+            } else if (e.currentTarget.classList.contains('desc')) {
+                [...e.currentTarget.children][1].classList.add('active');
+                [...e.currentTarget.children][0].classList.remove('active');
+                e.currentTarget.classList.add('asc');
+                e.currentTarget.classList.remove('desc');
+
+                if (key == "Team") {
+                   sortCharAsc(key);
+               } else {
+                    sortIntAsc(key);
+               }// start sort with descending 
+            } else if (!e.currentTarget.classList.contains('asc') || e.currentTarget.classList.contains('desc')) {
+                e.currentTarget.classList.add('desc');
+                [...e.currentTarget.children][0].classList.add('active');
+                sortIntDesc(key);
+            }
+    }
+});
+    
+
+
+
+getAllData();
+
+</script>
+</body>
+</html>
